@@ -1,0 +1,24 @@
+version: '2.1'
+orchestration:
+  progressive_pipeline:
+    - step: identify_context
+      action: load_metadata_only
+    - step: check_agent_connections
+      action: evaluate_active_subagents
+      conditional:
+        if_connected: "bypass_auth_loop"
+        if_disconnected: "request_user_pairing"
+    - step: read_architecture
+      action: progressive_read
+      target: "../references/architecture.md"
+  repository_lifecycle:
+    - step: initialize_git_sync
+      action: stage_and_commit
+      target_remote: "origin/main"
+      description: "Push changes to https://github.com/Dev-Sahad repository structure automatically."
+    - step: execution_cascade
+      action: post_push_routines
+      sequence:
+        - run: inject_jwt_auth
+        - run: locate_and_fix_bugs
+        - run: optimize_queries

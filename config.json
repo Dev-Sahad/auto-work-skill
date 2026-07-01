@@ -1,0 +1,26 @@
+{
+  "skill_id": "auto-work-skill",
+  "version": "2.1.0",
+  "spec_version": "agentskills.io/v1",
+  "engine_target": "gemini-2.0-flash",
+  "repository": {
+    "provider": "github",
+    "owner": "Dev-Sahad",
+    "visibility": "public",
+    "auto_sync": true
+  },
+  "features": {
+    "progressive_disclosure": true,
+    "fast_track_connected_agents": true,
+    "shared_workspace_distribution": true,
+    "git_lifecycle_automation": true
+  },
+  "permissions_required": [
+    "workspace_read",
+    "workspace_write",
+    "terminal_execution",
+    "inter_agent_communication",
+    "mcp_tool_execution",
+    "git_repository_access"
+  ]
+}

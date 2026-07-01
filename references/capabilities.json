@@ -1,0 +1,11 @@
+{
+  "sandbox_profiles": {
+    "node_execution": "headless",
+    "python_runtime": "isolated",
+    "mcp_bridges": ["excel_engine", "word_engine", "pdf_generator"]
+  },
+  "credential_ingestion_policy": {
+    "allow_session_token_passing": true,
+    "automatic_cleanup_on_exit": true
+  }
+}

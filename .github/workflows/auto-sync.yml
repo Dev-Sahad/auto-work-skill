@@ -1,0 +1,31 @@
+name: Auto-Work Skill Validation Sync
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Validate Configuration Syntax
+        run: |
+          node -e "
+          try {
+            const cfg = require('./config.json');
+            console.log('✅ config.json is valid JSON. Version:', cfg.version);
+          } catch(e) {
+            console.error('❌ Invalid JSON syntax in config.json:', e.message);
+            process.exit(1);
+          }
+          "
